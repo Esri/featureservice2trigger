@@ -6,7 +6,7 @@
   "preferGlobal": true,
   "bin": {
     "featureservice2triggers": "featureservice2triggers.js"
-  }
+  },
   "author": "Patrick Arlt",
   "license": "Apache 2.0",
   "dependencies": {
