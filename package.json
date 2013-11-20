@@ -1,0 +1,20 @@
+{
+  "name": "featureservice2triggers",
+  "version": "0.0.1",
+  "description": "Command line tool for creating Geotrigger rules features from a Feature Service.",
+  "main": "featureservice2triggers.js",
+  "preferGlobal": true,
+  "bin": {
+    "featureservice2triggers": "featureservice2triggers.js"
+  }
+  "author": "Patrick Arlt",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "request": "~2.27.0",
+    "optimist": "~0.6.0",
+    "JSONStream": "~0.7.1",
+    "mustache": "~0.7.3",
+    "geotrigger-js": "~0.1.2",
+    "colors": "~0.6.2"
+  }
+}
