@@ -1,11 +1,16 @@
 {
-  "name": "featureservice2triggers",
+  "name": "featureservice2trigger",
   "version": "0.0.1",
   "description": "Command line tool for creating Geotrigger rules features from a Feature Service.",
-  "main": "featureservice2triggers.js",
+  "main": "featureservice2trigger.js",
   "preferGlobal": true,
   "bin": {
-    "featureservice2triggers": "featureservice2triggers.js"
+    "featureservice2trigger": "featureservice2trigger.js"
+  },
+  "homepage": "https://github.com/Esri/featureservice2trigger",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/esri/featureservice2trigger.git"
   },
   "author": "Patrick Arlt",
   "license": "Apache 2.0",

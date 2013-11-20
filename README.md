@@ -1,4 +1,4 @@
-# featureservice2triggers
+# featureservice2trigger
 
 A command line tool for creating Geotrigger Rules from an ArcGIS FeatureService.
 
@@ -7,21 +7,21 @@ A command line tool for creating Geotrigger Rules from an ArcGIS FeatureService.
 Just install with NPM. You will need Node.js installed.
 
 ```
-$ npm install -g featureservice2triggers
+$ npm install -g featureservice2trigger
 ```
 
 ## Usage
 
-To print the full usage infromation just do...
+To print the full usage information just do...
 
 ```
-$ featureservice2triggers
+$ featureservice2trigger
 ```
 
-Here is an example of using `featureservice2triggers` to import a Feature Service of city parks.
+Here is an example of using `featureservice2trigger` to import a Feature Service of city parks.
 
 ```
-$ featureservice2triggers --clientId=YOUR_CLIENT_ID --clientSecret=YOUR_CLIENT_SECRET --tag=parks --tag=portland --serviceUrl="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Parks_pdx/FeatureServer/0" --notificationTemplate="Welcome to {{NAME}}"
+$ featureservice2trigger --clientId=YOUR_CLIENT_ID --clientSecret=YOUR_CLIENT_SECRET --tag=parks --tag=portland --serviceUrl="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Parks_pdx/FeatureServer/0" --notificationTemplate="Welcome to {{NAME}}"
 ```
 
 The service you want to import **MUST** be publicly accessible.
