@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // request is a generic HTTP library for Node.js
 var request = require("request");
 
@@ -34,9 +36,9 @@ var argv = require('optimist')
   .describe('serviceUrl', "the URL of the Feature Layer you would like to import")
 
   // setup the tags option
-  .alias('t', 'tags')
-  .describe('tags', "the tags to apply to the triggers created in the Geotrigger API")
-  .demand('tags')
+  .alias('t', 'tag')
+  .describe('tag', "tag to apply to the triggers created in the Geotrigger API")
+  .demand('tag')
 
   // setup the buffer option for point features
   .alias('b', 'buffer')
@@ -87,9 +89,13 @@ var geotriggers = new geotrigger.Session({
   clientSecret: argv.clientSecret
 });
 
-var tags = argv.tags.split(',').map(function(tag){
-  return tag.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-});
+var tags;
+
+if(Array.isArray(argv.tag)){
+  tags = argv.tag;
+} else {
+  tags = [argv.tag];
+}
 
 // make a request to get some metadata about the service
 console.log("Getting metadata for " + argv.serviceUrl);
