@@ -167,7 +167,7 @@ request({
         };
       }
 
-      if(feature.x && feature.y){
+      if(feature.geometry.x && feature.geometry.y){
         geo = {
           latitude: feature.geometry.y,
           longitude: feature.geometry.x,
