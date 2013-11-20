@@ -28,6 +28,8 @@ The service you want to import **MUST** be publicly accessible.
 
 ## Options
 
+Many of these options refer to parameters in [trigger/create](https://developers.arcgis.com/en/geotrigger-service/api-reference/trigger-create/) method of the Geotrigger Service API. You should familiarize yourself with the parameters for [trigger/create](https://developers.arcgis.com/en/geotrigger-service/api-reference/trigger-create/) before using this script.
+
 Options | Description
 --- | ---
 `clientId` - **Required** | Client id from an application on http://developers.arcgis.com/en/applications/.
