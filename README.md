@@ -24,7 +24,7 @@ Here is an example of using `featureservice2triggers` to import a Feature Servic
 $ featureservice2triggers --clientId=YOUR_CLIENT_ID --clientSecret=YOUR_CLIENT_SECRET --tag=parks --tag=portland --serviceUrl="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Parks_pdx/FeatureServer/0" --notificationTemplate="Welcome to {{NAME}}"
 ```
 
-**Note**
+The service you want to import **MUST** be publically accessable.
 
 ## Resources
 
