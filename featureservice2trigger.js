@@ -6,7 +6,7 @@ var JSONStream = require('JSONStream');
 var Mustache = require('Mustache');
 var colors = require('colors');
 var argv = require('optimist')
-    .usage('Usage: $0 -i [clientId] -s [clientSecret] -u [serviceUrl] -t [tags]')
+    .usage('Usage: $0 --clientSecret=[clientId] --clientSecret=[clientSecret] --serviceUrl=[serviceUrl] -t [tag] -t otherTag')
     .demand(['clientId', 'clientSecret', 'tag', 'serviceUrl'])
     .alias('t', 'tag')
     .default('buffer', '250')
