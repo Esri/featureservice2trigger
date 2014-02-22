@@ -24,8 +24,6 @@ Here is an example of using `featureservice2trigger` to import a Feature Service
 $ featureservice2trigger --clientId=YOUR_CLIENT_ID --clientSecret=YOUR_CLIENT_SECRET --tag=parks --tag=portland --serviceUrl="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Parks_pdx/FeatureServer/0" --notificationTemplate="Welcome to {{NAME}}"
 ```
 
-The service you want to import **MUST** be publicly accessible.
-
 ## Options
 
 Many of these options refer to parameters in [trigger/create](https://developers.arcgis.com/en/geotrigger-service/api-reference/trigger-create/) method of the Geotrigger Service API. You should familiarize yourself with the parameters for [trigger/create](https://developers.arcgis.com/en/geotrigger-service/api-reference/trigger-create/) before using this script.
@@ -42,12 +40,20 @@ Options | Description
 `notificationTemplate` |  A Mustache template for the push notification. Feature attributes will be passed into the template context. So a feature with attributes like `{NAME: Mt. Tabor Park}` and a template like `"Welcome to {{NAME"}}` will turn into `Welcome to Mt. Tabor Park`.
 `trackingProfile` | Changes the devices tracking profile to this when the trigger is fired. Should be `off`, `adaptive`, `fine`, or `rough`
 `direction` | The direction the device shold be traveling to fire the trigger. Either `enter` or `leave`
+`authenticate` | If the feature service you are trying to use requires authentication you must pass this flag to enable authentication. Defaults to `false`
+`concurrency` | The number of concurrent requests that will run. Reduce if you see errors, increse to increse import speed. Defaults to `50`
+
+## Notes
+
+Feature Services should be hosted on arcgis.com or an on-premise ArcGIS Service 10.1. If you are using this with a feature service hosted on premise the service must be publically accessible.
+
+If you are using a feature service that is hosted on arcgis.com that is not shared publically you will need to pass `--authenticate` along with other options to authenticate and access the service.
 
 ## Resources
 
 * [ArcGIS for Developers](https://developers.arcgis.com)
 * [ArcGIS Geotrigger Service](https://developers.arcgis.com/en/geotrigger-service/)
-* [@esripdx](http://twitter.com/esri)
+* [@esripdx](https://twitter.com/esripdx)
 
 ## Issues
 
@@ -72,7 +78,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-A copy of the license is available in the repository's [license.txt]( https://raw.github.com/Esri/esri-leaflet/master/license.txt) file.
+A copy of the license is available in the repository's [license.txt](https://github.com/Esri/featureservice2trigger/master/license.txt) file.
 
 [](Esri Tags: ArcGIS Geotrigger Service Tools Import FeatureLayer FeatureServer)
 [](Esri Language: JavaScript)
