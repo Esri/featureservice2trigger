@@ -9,7 +9,7 @@ var JSONStream = require('JSONStream');
 var Mustache = require('Mustache');
 var colors = require('colors');
 var argv = require('yargs')
-    .usage('Usage: $0 --clientSecret=[clientId] --clientSecret=[clientSecret] --serviceUrl=[serviceUrl] -t [tag] -t otherTag')
+    .usage('Usage: $0 --clientId=[clientId] --clientSecret=[clientSecret] --serviceUrl=[serviceUrl] -t [tag] -t otherTag (--callbackUrl=[http://url], --notificationTemplate=["string {{variable}}"], and/or --trackingProfile=[fine/rough/adaptive])')
     .demand(['clientId', 'clientSecret', 'tag', 'serviceUrl'])
     .alias('t', 'tag')
     .default('buffer', 250)
