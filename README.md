@@ -36,6 +36,7 @@ Options | Description
 `clientSecret` | **Required** Application client secret - http://developers.arcgis.com/en/applications/.
 `serviceUrl` | **Required** The URL of the Feature Layer you would like to import. You can find urls for your existing services at http://developers.arcgis.com/en/hosted-data/.
 `tag` | **Required** Tag or tags to apply to the triggers created in the Geotrigger API. You can define `tag` as many times as you like to apply multipile tags to each trigger.
+`token` | The token for consuming a secured Feature Service.  Inststructions for getting a token are found [here](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r3000000m5000000).
 `buffer` | If you are importing point features, buffer them by this amount to create the trigger area. Defaults to 250 meters.
 `useFeatureIds` | Use the ids of the features as the id of the trigger.
 `callbackUrl` | When the triggers condition is satisfied a POST request will be sent to this URL
