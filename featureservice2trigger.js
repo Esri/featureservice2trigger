@@ -6,7 +6,7 @@ var JSONStream = require('JSONStream');
 var Mustache = require('Mustache');
 var colors = require('colors');
 var argv = require('optimist')
-    .usage('Usage: $0 --clientId=[clientId] --clientSecret=[clientSecret] --serviceUrl=[serviceUrl] -t [tag] -t otherTag (--callbackUrl=[http://url], --notificationTemplate=["string {{variable}}"], and/or --trackingProfile=[fine/rough/adaptive])')
+    .usage('Usage: $0 --clientId=[clientId] --clientSecret=[clientSecret] --serviceUrl=[serviceUrl] --token=[tokenString] -t [tag] -t otherTag (--callbackUrl=[http://url], --notificationTemplate=["string {{variable}}"], and/or --trackingProfile=[fine/rough/adaptive])')
     .demand(['clientId', 'clientSecret', 'tag', 'serviceUrl'])
     .alias('t', 'tag')
     .default('buffer', '250')
@@ -16,6 +16,7 @@ var argv = require('optimist')
       'clientSecret': 'client secret from an application on developers.arcgis.com',
       'tag': 'tag to apply to the triggers created in the Geotrigger API',
       'serviceUrl': 'the URL of the Feature Layer you would like to import',
+      'token':'the token for consuming a secured feature service',
       'buffer': 'if you are importing point features, buffer them by this amount to create the trigger area',
       'trackingProfile':'Changes the devices tracking profile to this at when the trigger is fired',
       'notificationTemplate': 'A Mustache template for the push notification. Feature attributes will be passed into the template context',
@@ -41,9 +42,14 @@ var geotriggers = new geotrigger.Session({
 
 console.log("Getting metadata for " + argv.serviceUrl);
 
+var fsurl = argv.serviceUrl;
+if(argv.token != null) {
+  fsurl = argv.serviceUrl + '?token=' + argv.token;  
+}
+
 request({
   method: "GET",
-  url: argv.serviceUrl,
+  url: fsurl,
   json: true,
   form: {
     f: 'json'
@@ -79,10 +85,15 @@ request({
     }
 
     console.log('Requesting Features...');
+    
+    var queryUrl = argv.serviceUrl + '/query';
+    if(argv.token != null) {
+  		queryUrl = argv.serviceUrl + '/query?token=' + argv.token;  
+	}
 
     request({
       method: 'GET',
-      url: argv.serviceUrl + '/query',
+      url: queryUrl,
       form: {
         where: '1=1', // 'truthy' query to get all features
         outSR: 4326, // the Geotrigger Service only uses 4326
