@@ -12,6 +12,7 @@ var argv = require('yargs')
     .usage('Usage: $0 --clientId=[clientId] --clientSecret=[clientSecret] --serviceUrl=[serviceUrl] -t [tag] -t otherTag (--callbackUrl=[http://url], --notificationTemplate=["string {{variable}}"], and/or --trackingProfile=[fine/rough/adaptive])')
     .demand(['clientId', 'clientSecret', 'tag', 'serviceUrl'])
     .alias('t', 'tag')
+    .default('idField', 'FID')
     .default('buffer', 250)
     .default('direction', 'enter')
     .default('authenticate', false)
@@ -105,7 +106,7 @@ function requestFeatures(lastId, callback){
     qs: {
       outFields: "*",
       outSR: 4326, // the Geotrigger Service only uses 4326
-      where: "FID > " + lastId,
+      where: argv.idField + " > " + lastId,
       f: "json"
     },
     json: true
@@ -124,7 +125,8 @@ function requestFeatures(lastId, callback){
 
 function createItterator(callback) {
   return function processRequest(err, resp, data){
-    var lastId = data.features[data.features.length-1].attributes.FID;
+    console.log(err, data);
+    var lastId = data.features[data.features.length-1].attributes[argv.idField];
     if(data.exceededTransferLimit){
       requestFeatures(lastId, processRequest);
     }
@@ -196,11 +198,6 @@ function startImport(error, response, body) {
     }
 
     return triggerParams;
-  }
-
-  function createTrigger(params, featureId){
-    console.time(featureId);
-
   }
 
   function processFeature(feature) {

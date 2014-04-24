@@ -42,6 +42,7 @@ Options | Description
 `direction` | The direction the device shold be traveling to fire the trigger. Either `enter` or `leave`
 `authenticate` | If the feature service you are trying to use requires authentication you must pass this flag to enable authentication. Defaults to `false`
 `concurrency` | The number of concurrent requests that will run. Reduce if you see errors, increse to increse import speed. Defaults to `50`
+`idField` | Should be set to the field name of the id field for the layer. Defaults to `FID`. Other common values are `objectid` and `OBJECTID`.
 
 ## Notes
 
