@@ -16,10 +16,13 @@
   "license": "Apache 2.0",
   "dependencies": {
     "request": "~2.27.0",
-    "optimist": "~0.6.0",
     "JSONStream": "~0.7.1",
     "mustache": "~0.7.3",
     "geotrigger-js": "~0.1.x",
-    "colors": "~0.6.2"
+    "colors": "~0.6.2",
+    "terraformer-arcgis-parser": "~1.0.2",
+    "terraformer": "~1.0.1",
+    "async": "~0.2.10",
+    "yargs": "~1.1.3"
   }
 }
