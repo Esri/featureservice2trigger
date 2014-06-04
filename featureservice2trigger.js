@@ -125,7 +125,6 @@ function requestFeatures(lastId, callback){
 
 function createItterator(callback) {
   return function processRequest(err, resp, data){
-    console.log(err, data);
     var lastId = data.features[data.features.length-1].attributes[argv.idField];
     if(data.exceededTransferLimit){
       requestFeatures(lastId, processRequest);
@@ -175,7 +174,7 @@ function startImport(error, response, body) {
 
     if(argv.notificationTemplate) {
       action.notification = {
-        text: Mustache.render(argv.notificationTemplate, feature.attributes)
+        text: Mustache.render(argv.notificationTemplate, feature.properties)
       };
     }
 
