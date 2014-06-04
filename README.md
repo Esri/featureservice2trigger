@@ -37,7 +37,7 @@ Options | Description
 `buffer` | If you are importing point features, buffer them by this amount to create the trigger area. Defaults to 250 meters.
 `useFeatureIds` | Use the ids of the features as the id of the trigger.
 `callbackUrl` | When the triggers condition is satisfied a POST request will be sent to this URL
-`notificationTemplate` |  A Mustache template for the push notification. Feature attributes will be passed into the template context. So a feature with attributes like `{NAME: Mt. Tabor Park}` and a template like `"Welcome to {{NAME"}}` will turn into `Welcome to Mt. Tabor Park`.
+`notificationTemplate` |  A Mustache template for the push notification. Feature attributes will be passed into the template context. So a feature with attributes like `{NAME: Mt. Tabor Park}` and a template like `"Welcome to {{NAME}}` will turn into `Welcome to Mt. Tabor Park`.
 `trackingProfile` | Changes the devices tracking profile to this when the trigger is fired. Should be `off`, `adaptive`, `fine`, or `rough`
 `direction` | The direction the device shold be traveling to fire the trigger. Either `enter` or `leave`
 `authenticate` | If the feature service you are trying to use requires authentication you must pass this flag to enable authentication. Defaults to `false`
