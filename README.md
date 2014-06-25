@@ -42,11 +42,10 @@ Options | Description
 `direction` | The direction the device shold be traveling to fire the trigger. Either `enter` or `leave`
 `authenticate` | If the feature service you are trying to use requires authentication you must pass this flag to enable authentication. Defaults to `false`
 `concurrency` | The number of concurrent requests that will run. Reduce if you see errors, increse to increse import speed. Defaults to `50`
-`idField` | Should be set to the field name of the id field for the layer. Defaults to `FID`. Other common values are `objectid` and `OBJECTID`.
 
 ## Notes
 
-Feature Services should be hosted on arcgis.com or an on-premise ArcGIS Service 10.1. If you are using this with a feature service hosted on premise the service must be publically accessible.
+Feature Services should be hosted on arcgis.com or an on-premise ArcGIS Server 10.1 or higher. If you are using this with a feature service hosted on-premise the service must be publically accessible.
 
 If you are using a feature service that is hosted on arcgis.com that is not shared publically you will need to pass `--authenticate` along with other options to authenticate and access the service.
 
