@@ -12,7 +12,6 @@ var argv = require('yargs')
     .usage('Usage: $0 --clientId=[clientId] --clientSecret=[clientSecret] --serviceUrl=[serviceUrl] -t [tag] -t otherTag (--callbackUrl=[http://url], --notificationTemplate=["string {{variable}}"], and/or --trackingProfile=[fine/rough/adaptive])')
     .demand(['clientId', 'clientSecret', 'tag', 'serviceUrl'])
     .alias('t', 'tag')
-    .default('idField', 'FID')
     .default('buffer', 250)
     .default('direction', 'enter')
     .default('authenticate', false)
@@ -99,14 +98,14 @@ function getToken(callback){
   });
 }
 
-function requestFeatures(lastId, callback){
+function requestFeatures(lastId, objectIdField, callback){
   var requestOptions = {
     method: "get",
     url: argv.serviceUrl + "/query",
     qs: {
       outFields: "*",
       outSR: 4326, // the Geotrigger Service only uses 4326
-      where: argv.idField + " > " + lastId,
+      where: objectIdField + " > " + lastId,
       f: "json"
     },
     json: true
@@ -123,11 +122,11 @@ function requestFeatures(lastId, callback){
 
 }
 
-function createItterator(callback) {
+function createItterator(objectIdField, callback) {
   return function processRequest(err, resp, data){
-    var lastId = data.features[data.features.length-1].attributes[argv.idField];
+    var lastId = data.features[data.features.length-1].attributes[objectIdField];
     if(data.exceededTransferLimit){
-      requestFeatures(lastId, processRequest);
+      requestFeatures(lastId, objectIdField, processRequest);
     }
     for (var i = data.features.length - 1; i >= 0; i--) {
       callback(data.features[i]);
@@ -135,8 +134,8 @@ function createItterator(callback) {
   };
 }
 
-function eachFeature(callback){
-  requestFeatures(0, createItterator(callback));
+function eachFeature(callback, objectIdField){
+  requestFeatures(0, objectIdField, createItterator(objectIdField, callback));
 }
 
 function startImport(error, response, body) {
@@ -254,7 +253,7 @@ function startImport(error, response, body) {
     }
   }
 
-  eachFeature(processFeature);
+  eachFeature(processFeature, body.objectIdField);
 }
 
 var requestOptions = {
