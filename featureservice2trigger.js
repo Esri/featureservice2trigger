@@ -152,12 +152,12 @@ function startImport(error, response, body) {
 
   console.log("Success!".green.bold + " Got metadata for " + argv.serviceUrl);
 
-  var tags;
+  var tagTempates;
 
   if(Array.isArray(argv.tag)){
-    tags = argv.tag;
+    tagTemplates = argv.tag;
   } else {
-    tags = [argv.tag];
+    tagTemplates = [argv.tag];
   }
 
   console.log('Requesting Features...');
@@ -166,6 +166,11 @@ function startImport(error, response, body) {
     var geo = {};
     var action = {};
     var triggerParams;
+    var tags = [];
+
+    for (var i = tagTemplates.length - 1; i >= 0; i--) {
+      tags.push(Mustache.render(tagTemplates[i], feature.properties));
+    }
 
     if(argv.callbackUrl) {
       action.callbackUrl = argv.callbackUrl;
