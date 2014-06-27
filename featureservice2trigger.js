@@ -19,7 +19,7 @@ var argv = require('yargs')
     .describe({
       'clientId': 'client id from an application on developers.arcgis.com',
       'clientSecret': 'client secret from an application on developers.arcgis.com',
-      'tag': 'tag to apply to the triggers created in the Geotrigger API',
+      'tag': 'tag to apply to the triggers created in the Geotrigger API, can be a Mustache template',
       'serviceUrl': 'the URL of the Feature Layer you would like to import',
       'buffer': 'if you are importing point features, buffer them by this amount to create the trigger area',
       'trackingProfile':'Changes the devices tracking profile to this at when the trigger is fired',
